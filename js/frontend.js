@@ -21,40 +21,38 @@ function cursorAnimation() {
 }
 
 var bio = ["I'm an undergraduate at the University of Northern Iowa. I love learning new things about software and the ways in which you can apply those things to real world problems. So far I love to learn about functional programming the most. My favorite programming language would be Haskell mostly because it isn't like other languages that I have worked with.", "Some of the languages that I know pretty well would be Java, C, Scala, Ada, and Haskell. Some of the languages that I am not as fluent with but have used would be C++, JavaScript, MySQL, Lua, PHP, HTML, CSS, and Python. I'm usually someone that works on back-end components of a system but I'm not opposed to learning front-end components either!", "I'm a very charismatic person who enjoys programming for fun. I'm goal oriented and am very hard working!"];
-
+var contact = ["Phone Number: 319-415-2243", "Email: jamesvannordstrand@yahoo.com", ""];
 var homepage = true;
 
 function populateHome() {
-  $('#p1').fadeTo("medium", 0.01);
-  document.getElementById('p1').innerHTML = bio[0];
-  $('#p1').fadeTo("medium", 1.00);
-  $('#p2').fadeTo("medium", 0.01);
-  document.getElementById("p2").innerHTML = bio[1];
-  $('#p2').fadeTo("medium", 1.00);
-  $('#p3').fadeTo("medium", 0.01);
-  document.getElementById("p3").innerHTML = bio[2];
-  $('#p3').fadeTo("medium", 1.00);
+  for (var i = 1; i < 4; i++) {
+    id = '#p' + i;
+    $(id).fadeTo("medium", 0.01);
+    $(id).html(bio[i-1]);  
+    $(id).fadeTo("medium", 1.00);
+  };
+  $('#cursorP').css({"padding-bottom" : "0px"});
 }
 
 function populateAbout() {
-  $('#p1').fadeTo("medium", 0.01);
-  document.getElementById("p1").innerHTML = "Phone Number: 319-415-2243";
-  $('#p1').fadeTo("medium", 1.00);
-  $('#p2').fadeTo("medium", 0.01);
-  document.getElementById("p2").innerHTML = "Email: jamesvannordstrand@yahoo.com";
-  $('#p2').fadeTo("medium", 1.00);
-  document.getElementById("p3").innerHTML = "";
+  for (var i = 1; i < 4; i++) {
+    id = '#p' + i;
+    $(id).fadeTo("medium", 0.01);
+    $(id).html(contact[i-1]);  
+    $(id).fadeTo("medium", 1.00);
+  };
+  $('#cursorP').css({"padding-bottom" : "261px"});
 }
 
 function switchPage() {
   if (homepage){
     populateAbout();
     homepage = false;
-    eraseThenType('#switchText', 'Home');
+    eraseThenType("#switchText", "Home");
   } else {
     populateHome();
     homepage = true;
-    eraseThenType('#switchText', 'Contact');
+    eraseThenType("#switchText", "Contact");
   }
 }
 
