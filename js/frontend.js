@@ -25,15 +25,15 @@ var bio = ["I'm an undergraduate at the University of Northern Iowa. I love lear
 var homepage = true;
 
 function populateHome() {
-  $('#p1').fadeTo("medum", 0.01);
+  $('#p1').fadeTo("medium", 0.01);
   document.getElementById('p1').innerHTML = bio[0];
-  $('#p1').fadeTo("medum", 1.00);
-  $('#p2').fadeTo("medum", 0.01);
+  $('#p1').fadeTo("medium", 1.00);
+  $('#p2').fadeTo("medium", 0.01);
   document.getElementById("p2").innerHTML = bio[1];
-  $('#p2').fadeTo("medum", 1.00);
-  $('#p3').fadeTo("medum", 0.01);
+  $('#p2').fadeTo("medium", 1.00);
+  $('#p3').fadeTo("medium", 0.01);
   document.getElementById("p3").innerHTML = bio[2];
-  $('#p3').fadeTo("medum", 1.00);
+  $('#p3').fadeTo("medium", 1.00);
 }
 
 function populateAbout() {
@@ -43,9 +43,7 @@ function populateAbout() {
   $('#p2').fadeTo("medium", 0.01);
   document.getElementById("p2").innerHTML = "Email: jamesvannordstrand@yahoo.com";
   $('#p2').fadeTo("medium", 1.00);
-  $('#p3').fadeTo("medium", 0.01);
   document.getElementById("p3").innerHTML = "";
-  $('#p3').fadeTo("medium", 1.00);
 }
 
 function switchPage() {
@@ -68,11 +66,8 @@ showLeft.onclick = function() {
   classie.toggle( menuLeft, 'cbp-spmenu-open' );
 };
 
-$(document).ready(function() {
-  setInterval ('cursorAnimation()', 600);
-});
 
-// erasing stuff and typing stuff
+// erasing and typing paragraphs
 function eraseThenType(id, cap) {
   captionEl     = $(id);
   oldCaption    = captionEl.html();
@@ -80,13 +75,13 @@ function eraseThenType(id, cap) {
   captionLength = oldCaption.length;
 
   erase()
-  setTimeout('type()', 800);
+  setTimeout('type()', 500);
 }
 
 function erase() {
   captionEl.html(oldCaption.substr(0, captionLength--));
   if(captionLength >= 0) {
-    setTimeout('erase()', 50);
+    setTimeout('erase()', 25);
   } else {
     captionLength = 0;
   }    
@@ -95,11 +90,14 @@ function erase() {
 function type() {
   captionEl.html(newCaption.substr(0, captionLength++));
   if(captionLength < newCaption.length+1) {
-    setTimeout('type()', 50);
+    setTimeout('type()', 25);
   } else {
     captionLength = 0;
   }
 }
 ///////////////////////////
 
-window.onload = populateHome;
+$(document).ready(function() {
+  setInterval ('cursorAnimation()', 600);
+  populateHome();
+});
