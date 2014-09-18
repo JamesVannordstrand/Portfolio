@@ -24,24 +24,25 @@ var bio = ["I'm an undergraduate at the University of Northern Iowa. I love lear
 var contact = ["Phone Number: 319-415-2243", "Email: jamesvannordstrand@yahoo.com", ""];
 var homepage = true;
 
+function fadeParagraphs(page, offsetForCursor) {
+  var content = '.content'
+  $(content).stop()
+  $(content).fadeTo("medium", 0.01, function() {
+    for (var i = 1; i < 4; i++) {
+      id = '#p' + i;
+      $(id).html(page[i-1]);
+    }
+    $(content).fadeTo("medium", 1.00);
+    $('#cursorP').css({"padding-bottom" : offsetForCursor + "px"});
+  })
+}
+
 function populateHome() {
-  for (var i = 1; i < 4; i++) {
-    id = '#p' + i;
-    $(id).fadeTo("medium", 0.01);
-    $(id).html(bio[i-1]);  
-    $(id).fadeTo("medium", 1.00);
-  };
-  $('#cursorP').css({"padding-bottom" : "0px"});
+  fadeParagraphs(bio, 0)
 }
 
 function populateAbout() {
-  for (var i = 1; i < 4; i++) {
-    id = '#p' + i;
-    $(id).fadeTo("medium", 0.01);
-    $(id).html(contact[i-1]);  
-    $(id).fadeTo("medium", 1.00);
-  };
-  $('#cursorP').css({"padding-bottom" : "261px"});
+  fadeParagraphs(contact, 261)
 }
 
 function switchPage() {
@@ -82,9 +83,9 @@ function erase() {
     setTimeout('erase()', 25);
   } else {
     captionLength = 0;
-  }    
+  }
 }
- 
+
 function type() {
   captionEl.html(newCaption.substr(0, captionLength++));
   if(captionLength < newCaption.length+1) {
